@@ -88,9 +88,10 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading>
-            SSR to the rescue
-          </Heading>
+          <Heading>First time paint</Heading>
+          <Appear>
+            <Text margin="1em 0">SSR to the rescue</Text>
+          </Appear>
 
           <Appear>
             <Text margin="1em 0">Wait, it's not an html 🤔</Text>
@@ -124,10 +125,13 @@ export default class Presentation extends React.Component {
           </Layout>
         </Slide>
         <Slide>
-          <Image
-            src={require('../assets/transparent.png')}
-            height={400}
-          />
+          <Heading fit>After some time running...</Heading>
+          <Appear>
+            <Image
+              src={require('../assets/transparent.png')}
+              height={400}
+            />
+          </Appear>
         </Slide>
         <Slide>
           <Heading>Memory leak?</Heading>
@@ -211,9 +215,28 @@ export default class Presentation extends React.Component {
 
           <Appear><Text>Good, but not good enough</Text></Appear>
           <List>
-            <Appear><ListItem textSize="0.8em">requires own rendering abstraction</ListItem></Appear>
+            <Appear><ListItem textSize="0.8em">manipulates with own abstraction</ListItem></Appear>
             <Appear><ListItem textSize="0.8em">need to create a lot of objects (memory pressure)</ListItem></Appear>
+            <Appear><ListItem textSize="0.8em">even the most optimized code is not perfomant enough</ListItem></Appear>
           </List>
+        </Slide>
+
+        <Slide>
+          <Heading fit>Lib is not fast enough?</Heading>
+
+          <Appear>
+            <Text margin="1em">
+              Implement your own
+              <Text textSize="2em">🚲</Text>
+            </Text>
+          </Appear>
+        </Slide>
+
+        <Slide bgImage={require('../assets/webgl-complexity.jpg')}>
+        </Slide>
+
+        <Slide>
+          <Heading textFont="serif" fit>https://webglfundamentals.org/</Heading>
         </Slide>
 
         <Slide>
@@ -236,6 +259,7 @@ export default class Presentation extends React.Component {
             height: '100%',
             justifyContent: 'center',
             alignItems: 'center',
+            marginBottom: '1em'
           }}>
             <div style={{
               width: 100,
@@ -243,6 +267,12 @@ export default class Presentation extends React.Component {
               background: 'rebeccapurple'
             }}/>
           </div>
+
+          <Appear>
+          <CodePane lang="js" source={
+`_.inRange(event.x, left, right) && _.inRange(event.y, top, bottom)
+`} textSize={'.9em'} />
+          </Appear>
         </Slide>
 
         <Slide>
@@ -259,15 +289,22 @@ export default class Presentation extends React.Component {
               background: 'rebeccapurple',
               borderRadius: '50%',
             }}/>
+
+<CodePane lang="js" source={
+`distance(eventCenter, circleCenter) < radius
+`} textSize={'.9em'} />
           </div>
         </Slide>
 
         <Slide>
-          <Image src={require('../assets/rs-logo.svg')} />
+          <Image src={require('../assets/rs-logo.png')} height={400} />
+        </Slide>
+
+        <Slide bgImage={require('../assets/webgl-complexity.jpg')}>
         </Slide>
 
         <Slide>
-          <Image src={require('../assets/rs-logo-inspect.png')} />
+          <Image src={require('../assets/click-detection.png')} height={400} />
         </Slide>
 
         <Slide>
@@ -307,11 +344,35 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading>OOM 😵</Heading>
+          <Text textSize="2em" margin="1em">
+            Int to color
+          </Text>
+
+<Appear><CodePane textSize="1em" lang="c" source={
+`1 -> rgb(0, 0, 1);
+10 -> rgb(0, 0, 10);
+`
+}/></Appear>
+
+<Appear><CodePane textSize="1em" lang="c" source={
+`...
+255 -> rgb(0, 0, 255);
+256 -> rgb(0, 1, 0);
+257 -> rgb(0, 1, 1);
+...
+281 -> rgb(0, 1, 35);
+`
+}/></Appear>
+        </Slide>
+
+        <Slide bgImage={require('../assets/oom.png')}>
         </Slide>
 
         <Slide>
-          <Text>https://webglfundamentals.org/</Text>
+          <Heading fit>Compute values at access time</Heading>
+          <Appear>
+            <Text>Code</Text>
+          </Appear>
         </Slide>
 
         <Slide>
